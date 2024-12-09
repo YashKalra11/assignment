@@ -1,0 +1,172 @@
+# q1
+student_marks = [78, 85, 92, 67, 88]
+updated_marks = [mark + 5 for mark in student_marks]
+print(updated_marks)
+
+# q2
+student_marks = [78, 85, 92, 67, 88, 35, 54, 72, 45]
+def calculate_grades(marks):
+    grades = []
+    for mark in marks:
+        if mark >= 75:
+            grades.append('A')
+        elif mark >= 60:
+            grades.append('B')
+        elif mark >= 40:
+            grades.append('C')
+        else:
+            grades.append('D')
+    return grades
+student_grades = calculate_grades(student_marks)
+for mark, grade in zip(student_marks, student_grades):
+    print(f'Mark: {mark}, Grade: {grade}')
+
+# q3
+student_marks = [78, 85, 92, 99, 88, 99, 67]
+def find_first_occurrence(marks, target_score):
+    try:
+        index = marks.index(target_score)
+        return index
+    except ValueError:
+        return -1
+target_score = 99
+first_occurrence_index = find_first_occurrence(student_marks, target_score)
+if first_occurrence_index != -1:
+    print(f'The first occurrence of the score {target_score} is at index: {first_occurrence_index}')
+else:
+    print(f'The score {target_score} is not found in the array.')
+
+# q4
+student_marks = [78, 99, 85, 99, 92, 67, 99, 88]
+def count_score(marks, target_score):
+    count = marks.count(target_score)
+    return count
+target_score = 99
+count_of_ninety_nine = count_score(student_marks, target_score)
+print(f'The number of students who scored {target_score} is: {count_of_ninety_nine}')
+
+# q5
+student_marks = [78, 85, 92, 67, 88]
+total_sum = sum(student_marks)
+print(f'The sum of all scores is: {total_sum}')
+
+# q6
+student_marks = [78, 85, 92, 67, 88]
+total_sum = sum(student_marks)
+count = len(student_marks)
+average_score = total_sum / count if count > 0 else 0
+print(f'The average score is: {average_score:.2f}')
+
+# q7
+student_marks = [78, 85, 92, 67, 88, 99]
+def check_even_odd(marks):
+    results = []
+    for mark in marks:
+        if mark % 2 == 0:
+            results.append((mark, 'Even'))
+        else:
+            results.append((mark, 'Odd'))
+    return results
+even_odd_results = check_even_odd(student_marks)
+for mark, status in even_odd_results:
+    print(f'Score: {mark}, Status: {status}')
+
+# q8
+student_marks = [78, 85, 92, 67, 88, 99]
+min_score = min(student_marks)
+max_score = max(student_marks)
+print(f'The minimum score is: {min_score}')
+print(f'The maximum score is: {max_score}')
+
+# q9
+student_marks = [1, 3, 20, 4, 1, 0, 5, 9]
+def find_peak_element(arr):
+    n = len(arr)
+    if n == 0:
+        return None
+    if n == 1 or arr[0] >= arr[1]:
+        return arr[0]
+    if arr[n-1] >= arr[n-2]:
+        return arr[n-1]
+    for i in range(1, n - 1):
+        if arr[i] >= arr[i - 1] and arr[i] >= arr[i + 1]:
+            return arr[i]
+    return None
+peak_element = find_peak_element(student_marks)
+if peak_element is not None:
+    print(f'A peak element is: {peak_element}')
+else:
+    print('No peak element found in the array.')
+
+# q10
+student_marks = [1, 2, 3, 4, 5, 10, 13, 17, 18, 19, 20]
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+def count_primes(arr):
+    prime_count = 0
+    for number in arr:
+        if is_prime(number):
+            prime_count += 1
+    return prime_count
+prime_count = count_primes(student_marks)
+print(f'The number of prime numbers in the array is: {prime_count}')
+
+# q11
+student_marks = [78, 85, 92, 67, 88]
+def print_array(arr):
+    print("Array:", arr)
+print("Original Array:")
+print_array(student_marks)
+student_marks.insert(0, 95)
+print("\nArray after inserting 95 at the front:")
+print_array(student_marks)
+student_marks.insert(2, 90)
+print("\nArray after inserting 90 at index 2:")
+print_array(student_marks)
+student_marks.append(100)
+print("\nArray after inserting 100 at the end:")
+print_array(student_marks)
+
+# q12
+student_marks = [78, 85, 92, 67, 88]
+def print_array(arr):
+    print("Array:", arr)
+print("Original Array:")
+print_array(student_marks)
+front_deleted = student_marks.pop(0)
+print(f"\nArray after deleting {front_deleted} from the front:")
+print_array(student_marks)
+if len(student_marks) > 2:
+    pos_deleted = student_marks.pop(2)
+    print(f"\nArray after deleting {pos_deleted} from index 2:")
+    print_array(student_marks)
+else:
+    print("\nNo element exists at index 2 for deletion.")
+if student_marks:
+    end_deleted = student_marks.pop()
+    print(f"\nArray after deleting {end_deleted} from the end:")
+    print_array(student_marks)
+else:
+    print("\nThe array is empty, no element to delete from the end.")
+
+# q13
+student_marks = [78, 85, 92, 67, 88, 85, 92]
+def find_duplicates(arr):
+    seen = set()
+    duplicates = set()
+    for number in arr:
+        if number in seen:
+            duplicates.add(number)
+        else:
+            seen.add(number)
+    return duplicates
+duplicate_numbers = find_duplicates(student_marks)
+if duplicate_numbers:
+    print(f'Duplicates found: {duplicate_numbers}')
+else:
+    print('-1')

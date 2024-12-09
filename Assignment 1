@@ -1,0 +1,196 @@
+#include <stdio.h>
+
+int main() {
+    // Q1: Armstrong Number
+    int num, sum = 0, temp , digit ;
+    printf("enter an integer:");
+    scanf("%d",&num);
+    temp=num;
+    while (temp>0){
+        digit=temp%10;
+        sum+=digit*digit*digit;
+        temp/=10;
+    }
+    if (sum==num){
+        printf("%d is an armstring number.\n",num);
+    }
+    else{
+        printf("%d in not an armstrong number.\n",num);
+    }
+
+    // Q2: HCF of Two Numbers
+    int num1,num2,hcf,i;
+    printf("enter two integers:");
+    scanf("%d %d",&num1,&num2);
+    for(i=1;i<=num1 && i<=num2;i++)
+    {
+        if(num1%i==0 && num2%i==0){
+            hcf=i;
+        }
+    } 
+    printf("hcf of %d and %d is %d.\n",num1,num2,hcf);
+
+    // Q3: Subtraction Using Two's Complement
+    int subtract(int a, int b) {
+        while (b != 0) {
+            int carry = (~a) & b;
+            a = a ^ b;
+            b = carry << 1;
+        }
+        return a;
+    }
+    
+    int a, b;
+    printf("Enter two integers (a and b) to subtract (a - b): ");
+    scanf("%d %d", &a, &b);
+    
+    int result = subtract(a, b);
+    printf("Result of %d - %d is: %d\n", a, b, result);
+
+    // Q4: Swap Two Numbers
+    void swapWithTemp(int *a, int *b) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+
+    void swapWithArithmetic(int *a, int *b) {
+        *a = *a + *b;
+        *b = *a - *b;
+        *a = *a - *b;
+    }
+
+    void swapWithXOR(int *a, int *b) {
+        *a = *a ^ *b;
+        *b = *a ^ *b;
+        *a = *a ^ *b;
+    }
+
+    int x, y;
+    printf("Enter two integers to swap (x and y): ");
+    scanf("%d %d", &x, &y);
+    
+    printf("Original values: x = %d, y = %d\n", x, y);
+    
+    swapWithTemp(&x, &y);
+    printf("After swap with temp variable: x = %d, y = %d\n", x, y);
+    
+    swapWithTemp(&x, &y);
+    swapWithArithmetic(&x, &y);
+    printf("After swap with arithmetic: x = %d, y = %d\n", x, y);
+    
+    swapWithArithmetic(&x, &y);
+    swapWithXOR(&x, &y);
+    printf("After swap with XOR: x = %d, y = %d\n", x, y);
+    
+    swapWithXOR(&x, &y);
+    int *px = &x, *py = &y;
+    swapWithPointers(&px, &py);
+    printf("After swap with pointers: x = %d, y = %d\n", *px, *py);
+
+    // Q5: Perfect Number
+    int isPerfectNumber(int num) {
+        int sum = 0;
+        
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        
+        return sum == num;
+    }
+
+    printf("Enter a number to check if it is a Perfect Number: ");
+    scanf("%d", &num);
+    
+    if (isPerfectNumber(num)) {
+        printf("%d is a Perfect Number.\n", num);
+    } else {
+        printf("%d is not a Perfect Number.\n", num);
+    }
+
+    // Q6: Determine the Quadrant
+    void determineQuadrant(int x, int y) {
+        if (x > 0 && y > 0) {
+            printf("The coordinate point (%d, %d) lies in the First Quadrant.\n", x, y);
+        } else if (x < 0 && y > 0) {
+            printf("The coordinate point (%d, %d) lies in the Second Quadrant.\n", x, y);
+        } else if (x < 0 && y < 0) {
+            printf("The coordinate point (%d, %d) lies in the Third Quadrant.\n", x, y);
+        } else if (x > 0 && y < 0) {
+            printf("The coordinate point (%d, %d) lies in the Fourth Quadrant.\n", x, y);
+        } else if (x == 0 && y != 0) {
+            printf("The coordinate point (%d, %d) lies on the Y-axis.\n", x, y);
+        } else if (y == 0 && x != 0) {
+            printf("The coordinate point (%d, %d) lies on the X-axis.\n", x, y);
+        } else {
+            printf("The coordinate point (%d, %d) is at the Origin.\n", x, y);
+        }
+    }
+
+    printf("Enter the X and Y coordinates: ");
+    scanf("%d %d", &x, &y);
+    
+    determineQuadrant(x, y);
+
+    // Q7: Binary and Decimal Conversion
+    int binaryToDecimal(int binary) {
+        int decimal = 0, base = 1, last_digit;
+
+        while (binary > 0) {
+            last_digit = binary % 10;
+            decimal += last_digit * base;
+            base *= 2;
+            binary /= 10;
+        }
+        return decimal;
+    }
+
+    int decimalToBinary(int decimal) {
+        int binary = 0, base = 1, remainder;
+
+        while (decimal > 0) {
+            remainder = decimal % 2;
+            binary += remainder * base;
+            base *= 10;
+            decimal /= 2;
+        }
+        return binary;
+    }
+
+    int choice, number;
+    printf("Choose conversion type:\n");
+    printf("1. Binary to Decimal\n");
+    printf("2. Decimal to Binary\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        printf("Enter a binary number: ");
+        scanf("%d", &number);
+        printf("The decimal equivalent is: %d\n", binaryToDecimal(number));
+    } else if (choice == 2) {
+        printf("Enter a decimal number: ");
+        scanf("%d", &number);
+        printf("The binary equivalent is: %d\n", decimalToBinary(number));
+    } else {
+        printf("Invalid choice!\n");
+    }
+
+    // Q8: Pattern of 1s and 0s
+    int n = 5; // Number of rows for the pattern
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            if ((i + j) % 2 == 0) {
+                printf("1");
+            } else {
+                printf("0");
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
